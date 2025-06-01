@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body>
+<form th:action="@{/new}" th:object="${event}" method="post" class="container mx-auto p-4">
+    <div class="mb-4">
+        <label>Titel:</label>
+        <input type="text" th:field="*{titel}" class="border p-2 w-full" required />
+        <span th:errors="*{titel}" class="text-red-500"></span>
+    </div>
+    <div class="mb-4">
+        <label>Tijdstip:</label>
+        <input type="datetime-local" th:field="*{tijdstip}" class="border p-2 w-full" required />
+        <span th:errors="*{tijdstip}" class="text-red-500"></span>
+    </div>
+    <div class="mb-4">
+        <label>Omschrijving:</label>
+        <textarea th:field="*{omschrijving}" class="border p-2 w-full" required></textarea>
+        <span th:errors="*{omschrijving}" class="text-red-500"></span>
+    </div>
+    <div class="mb-4">
+        <label>Organisatie:</label>
+        <input type="text" th:field="*{organisatie}" class="border p-2 w-full" required />
+        <span th:errors="*{organisatie}" class="text-red-500"></span>
+    </div>
+    <div class="mb-4">
+        <label>E-mail contactpersoon:</label>
+        <input type="email" th:field="*{mailContactPersoon}" class="border p-2 w-full" required />
+        <span th:errors="*{mailContactPersoon}" class="text-red-500"></span>
+    </div>
+    <div class="mb-4">
+        <label>Locatie:</label>
+        <select th:field="*{locatie.id}" class="border p-2 w-full" required>
+            <option th:each="location : ${locations}" th:value="${location.id}" th:text="${location.naam}"></option>
+        </select>
+        <span th:errors="*{locatie}" class="text-red-500"></span>
+    </div>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2">Opslaan</button>
+</form>
+</body>
+</html>
